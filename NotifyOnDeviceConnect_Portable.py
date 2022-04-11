@@ -1,13 +1,8 @@
-# import socket
-# def guard(*args, **kwargs):
-#     raise Exception("I told_hosts you not to use the Internet!")
-# socket.socket = guard
 import time
 import copy
 import telegram_send
 from fritzconnection.lib.fritzhosts import FritzHosts
 #-----------------------------------------------------
-
 print("Script running!")
 check_interval = 15
 timeout_interval = 60
@@ -25,7 +20,6 @@ while(not found_host):
         found_host = True
         break
     time.sleep(5)
-
 #-----------------------------------------------------
 def Loop():
     current_hosts = GetActiveHosts()
@@ -49,12 +43,6 @@ def Loop():
 
 def SendTelegramNotification(message):
     telegram_send.send(messages=[message]) #this needs to be configured before you run the script
-
-def GetActiveHosts(session:FritzHosts):
-    if not session == None:
-        session.get_active_hosts()
-    else:
-        raise Exception("Fritz session is None.")
 
 def GetActiveHosts():
     hosts = hostInstance.get_active_hosts()
